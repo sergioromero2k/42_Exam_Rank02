@@ -6,21 +6,28 @@
 /*   By: sergio-alejandro <sergio-alejandro@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 04:24:54 by sergio-alej       #+#    #+#             */
-/*   Updated: 2025/12/14 04:36:20 by sergio-alej      ###   ########.fr       */
+/*   Updated: 2025/12/22 19:44:43 by sergio-alej      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int put_num(int n){
-    
-}
-int	fizzbuzz(int len)
+void	put_num(int n)
 {
-	int i;
+	char	c;
+
+	if (n >= 10)
+		put_num(n / 10);
+	c = (n % 10) + '0';
+	write(1, &c, 1);
+}
+
+void	fizzbuzz(int len)
+{
+	int	i;
 
 	i = 1;
-	while (i <= 100)
+	while (i <= len)
 	{
 		if (i % 15 == 0)
 		{
@@ -28,11 +35,11 @@ int	fizzbuzz(int len)
 		}
 		else if (i % 5 == 0)
 		{
-			write(1, "fizz", 4);
+			write(1, "buzz", 4);
 		}
 		else if (i % 3 == 0)
 		{
-			write(1, "buzz", 4);
+			write(1, "fizz", 4);
 		}
 		else
 		{
@@ -41,4 +48,8 @@ int	fizzbuzz(int len)
 		i++;
 		write(1, "\n", 1);
 	}
+}
+int	main(void)
+{
+	fizzbuzz(100);
 }
